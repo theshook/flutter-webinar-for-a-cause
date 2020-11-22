@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title + 'Dev Work'),
+        title: Text(widget.title + 'Feature 1'),
       ),
       body: users.length == 0
           ? Center(
