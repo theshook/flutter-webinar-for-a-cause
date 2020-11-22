@@ -26,9 +26,9 @@ workflows:
         # set up local properties
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - cd . && flutter packages pub get
-      - cd . && flutter build apk --debug
+      - cd . && flutter build apk --release
       - find . -name "Podfile" -execdir pod install \;
-      - cd . && flutter build ios --debug --no-codesign
+      - cd . && flutter build ios --release --no-codesign
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
@@ -47,6 +47,13 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: develop
+          include: true
+          source: true
     scripts:
       - |
         # set up debug keystore
